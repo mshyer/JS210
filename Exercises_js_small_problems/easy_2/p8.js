@@ -1,21 +1,25 @@
-const oddities = function(arr) {
-  let odd_idx_elements = [];
-  for (let idx = 0; idx < arr.length; idx++) {
-    if (idx % 2 === 0) {
-      odd_idx_elements.push(arr[idx]);
-    }
+// Data structure: conditional logic
+
+function mean(...grades) {
+  return (grades.reduce((sum, num) => sum + num) / grades.length);
+}
+
+const getGrade = function(...scores) {
+  let avg = mean(...scores);
+  if (avg < 60) {
+    return 'F';
+  } else if (avg < 70) {
+    return 'D';
+  } else if (avg < 80) {
+    return 'C';
+  } else if (avg < 90) {
+    return 'B';
+  } else if (avg <= 100) {
+    return 'A';
   }
-  return odd_idx_elements;
-}
 
-const evenities = function(arr) {
-  return arr.filter((ele) => arr.indexOf(ele) % 2 === 1);
-}
-//console.log(oddities([2, 3, 4, 5, 6])); // logs [2, 4, 6]
-//console.log(oddities([1, 2, 3, 4, 5, 6])); // logs [1, 3, 5]
-//console.log(oddities(["abc", "def"])); // logs ['abc']
-//console.log(oddities([123])); // logs [123]
-//console.log(oddities([])); // logs []
+  return 'Woops';
+};
 
-console.log(evenities([0, 1, 2, 3, 4, 5, 6]));
-console.log(evenities(['Barbra', 'Streisand']));
+console.log(getGrade(95, 90, 93));    // "A"
+console.log(getGrade(50, 50, 95));    // "D"

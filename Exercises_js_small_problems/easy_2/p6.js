@@ -1,8 +1,10 @@
-const penultimate = function(string) {
-  let words = string.split(' ');
-  return words[words.length - 2];
-}
+'use strict';
+let rlSync = require('readline-sync');
 
-console.log(penultimate("last word") === "last"); // logs true
-console.log(penultimate("Launch School is great!") === "is"); // logs true
-console.log(penultimate('last word'));
+let noun = rlSync.question('Enter a noun: ');
+let verb = rlSync.question('Enter a verb: ');
+let adjective = rlSync.question('Enter an adjective: ');
+
+let story = `The ${noun} went up to his ${adjective} boss and ${verb}.`;
+console.log(story);
+

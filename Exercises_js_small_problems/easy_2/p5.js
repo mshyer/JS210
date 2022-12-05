@@ -1,6 +1,20 @@
-let rlSync = require('readline-sync');
+// Create right triangles of n lengt
+// Data structure: strings
+// Input: number
+// Output: log to console strings representing triangle
+// Algorithm:
+//   1. Num starts init to 1
+//   2. While num stars <= num
+//     a. output (' '.repeat(num - numstars) plus stars
 
-let n1 = Number(rlSync.question('Enter the first number: '));
-let n2 = Number(rlSync.question('Enter the second number: '));
+function triangle(num) {
+  let numStars = 1;
+  while (numStars <= num) {
+    console.log(' '.repeat(num - numStars) + '*'.repeat(numStars));
+    numStars += 1;
+  }
+}
 
-console.log(`${n1} + ${n2} = ${n1 + n2}`);
+triangle(5);
+
+triangle(9);

@@ -1,28 +1,48 @@
-function stringToInteger(string) {
-  const NUMBERS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
-  let digits = [];
-  let scale = string.length
-  result_number = 0;
-  for (let idx = 0; idx < string.length; idx++) {
-    let current_number = (NUMBERS.indexOf(string[idx]));
-    result_number += (current_number * (10 ** (scale - 1)));
-    scale -= 1;
+// Input: integer representing year
+// Output: string with two parts, the number and suffix
+//
+// Algorithm:
+// 1. Find the century:
+//   a. Math.ceil(year / 100)
+// 2. find the suffix
+//   - if the century ends in:
+//    1: st
+//    2: nd
+//    3: rd
+//    4-19: th
+//    % 10: th
+//    DATA STRUCTURE: conditional logic and numbers
+// 3. Combine both into string and return it
+//
+
+
+function suffix(century) {
+  if (century % 10 === 0) {
+    return 'th';
+  } else if (century % 100 < 20 && century % 100 > 3) {
+    return 'th';
+  } else if (century % 10 === 1) {
+    return 'st';
+  } else if (century % 10 === 2) {
+    return 'nd';
+  } else if (century % 10 === 3) {
+    return 'rd';
   }
-  return result_number;
+  return 'oops';
 }
 
-function stringToSignedInteger(string) {
-  switch (string[0]) {
-    case '-':
-      return -stringToInteger(string.slice(1));
-    case '+':
-      return stringToInteger(string.slice(1));
-    default:
-      return stringToInteger(string);
-  }
+function century(year) {
+  let cent = Math.ceil(year / 100);
+  let sufx = suffix(cent);
+  return `${cent}${sufx}`;
 }
-console.log(stringToSignedInteger("4321") === 4321); // logs true
-console.log(stringToSignedInteger("570") === 570); // logs true
-console.log(stringToSignedInteger("4321") === 4321); // logs true
-console.log(stringToSignedInteger("-570") === -570); // logs true
-console.log(stringToSignedInteger("+100") === 100); // logs true
+
+console.log(century(2000));        // "20th"
+console.log(century(2001));        // "21st"
+console.log(century(1965));        // "20th"
+console.log(century(256));         // "3rd"
+console.log(century(5));           // "1st"
+console.log(century(10103));       // "102nd"
+console.log(century(1052));        // "11th"
+console.log(century(1127));        // "12th"
+console.log(century(11201));       // "113th"
